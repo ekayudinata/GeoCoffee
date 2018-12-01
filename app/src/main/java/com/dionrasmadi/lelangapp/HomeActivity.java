@@ -6,14 +6,18 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.dionrasmadi.lelangapp.listJual.ListPenjualActivity;
+import com.dionrasmadi.lelangapp.listLelang.LelangActivity;
 import com.dionrasmadi.lelangapp.mapPenjual.MapPetaniActivity;
 
 public class HomeActivity extends AppCompatActivity {
+
+    Intent intent ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        intent = getIntent();
     }
 
     public void toListPenjual(View view){
@@ -27,5 +31,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void toLelangSaya(View view) {
+        Intent i = new Intent(this, LelangActivity.class);
+        i.putExtra("username",intent.getStringExtra("username"));
+        startActivity(i);
     }
 }
