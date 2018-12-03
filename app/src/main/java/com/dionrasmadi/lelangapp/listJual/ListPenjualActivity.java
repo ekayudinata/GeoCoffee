@@ -30,7 +30,7 @@ public class ListPenjualActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     List<DataUser> users;
     AdapterPenjual adapter;
-    private static final String USER_URL = "https://ondy13.000webhostapp.com/api.php";
+    private static final String USER_URL = "http://lelang.freeoda.com/api.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

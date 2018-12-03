@@ -33,7 +33,7 @@ import static com.dionrasmadi.lelangapp.listDetailBarang.DetailPenjualActivity.b
 import static com.dionrasmadi.lelangapp.listDetailBarang.DetailPenjualActivity.recyclerView;
 
 public class BackgroundWorker extends AsyncTask<String, Void, String> {
-    private String USERNAME="", PASSWORD="";
+    private String USERNAME="", PASSWORD="",LONGITUDE="",LATITUDE="";
     private String TYPE="";
 
     private AlertDialog alertDialog ;
@@ -46,9 +46,9 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         TYPE = params[0];
-        String login_url = "https://ondy13.000webhostapp.com/login.php";
-        String register_url = "https://ondy13.000webhostapp.com/registrasi.php";
-        String listBarang_url = "https://ondy13.000webhostapp.com/barangApi.php";
+        String login_url = "http://lelang.freeoda.com/login.php";
+        String register_url = "http://lelang.freeoda.com/registrasi.php";
+        String listBarang_url = "http://lelang.freeoda.com/barangApi.php";
 
         switch (TYPE){
             case "login":{
@@ -192,6 +192,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 break;
             }
 
+
         }
 
         return "Anda Offline";
@@ -217,6 +218,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                     berhasilLogin = true;
 
                     USERNAME = user_data.getString("username");
+                    LONGITUDE = user_data.getString("longitude");
+                    LATITUDE = user_data.getString("latitude");
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -227,6 +230,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                     Intent i  = new Intent(context, HomeActivity.class);
                     i.putExtra("username",USERNAME);
                     i.putExtra("password", PASSWORD);
+                    i.putExtra("longitude",LONGITUDE);
+                    i.putExtra("latitude",LATITUDE);
                     context.startActivity(i);
                     ((LoginActivity)context).finish();
                 }

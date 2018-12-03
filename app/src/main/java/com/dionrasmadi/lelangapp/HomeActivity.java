@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.dionrasmadi.lelangapp.listJual.ListPenjualActivity;
@@ -37,11 +38,13 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void toLelangSaya(View view) {
-        dialog.show();
+//        dialog.show();
 
-        String username = intent.getStringExtra("username");
-        BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-        backgroundWorker.execute("cekLelang", username);
+        Log.d("latitude",intent.getStringExtra("latitude"));
+
+//        String username = intent.getStringExtra("username");
+//        BackgroundWorker backgroundWorker = new BackgroundWorker(this);
+//        backgroundWorker.execute("cekLelang", username);
 
 //        Intent i = new Intent(this, LelangActivity.class);
 //        i.putExtra("username",intent.getStringExtra("username"));
