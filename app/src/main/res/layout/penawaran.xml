@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/penawaran_iv_barang"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#000"
+            android:src="@drawable/logo"/>
+
+        <TextView
+            android:id="@+id/penawaran_tv_nama_barang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:background="@color/colorPrimary"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:text="Biji Kopi Robusta"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:background="#6e706e"
+                        android:textColor="#fff"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:text="Harga awal"/>
+                    <TextView
+                        android:id="@+id/penawaran_tv_harga_awal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:textAlignment="center"
+                        android:textColor="#4b4a4a"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:text="Rp 15000"/>
+
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:background="#6e706e"
+                        android:textColor="#fff"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:text="Penawar tertinggi"/>
+                    <TextView
+                        android:id="@+id/penawaran_tv_penawar_tertinggi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:textAlignment="center"
+                        android:textColor="#4b4a4a"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:text="Rp 15000"/>
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#9b9898"
+            android:layout_marginTop="5dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Dapatkan kopi ini dengan menawar harga lebih tinggi"/>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:background="@color/colorPrimary"
+                        android:textColor="#fff"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:text="Penawaran Anda"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textAlignment="center"
+                            android:textColor="#4b4a4a"
+                            android:textStyle="bold"
+                            android:textSize="20dp"
+                            android:text="Rp"/>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/layouttawarharga"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/logo">
+
+                            <EditText
+                                android:id="@+id/et_tawarharga"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number" />
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp" >
+            <Button
+                android:id="@+id/bt_batal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:text="Batal"/>
+            <Button
+                android:id="@+id/bt_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="ok"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

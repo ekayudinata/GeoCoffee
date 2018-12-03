@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.dionrasmadi.lelangapp.dataClass.DataBarang;
 import com.dionrasmadi.lelangapp.listDetailBarang.AdapterBarang;
@@ -30,6 +32,8 @@ import static com.dionrasmadi.lelangapp.RegisterActivity.etEmail;
 import static com.dionrasmadi.lelangapp.RegisterActivity.loadingRegist;
 import static com.dionrasmadi.lelangapp.listDetailBarang.DetailPenjualActivity.adapter;
 import static com.dionrasmadi.lelangapp.listDetailBarang.DetailPenjualActivity.barangList;
+import static com.dionrasmadi.lelangapp.listDetailBarang.DetailPenjualActivity.layout_no_data;
+import static com.dionrasmadi.lelangapp.listDetailBarang.DetailPenjualActivity.progressBar2;
 import static com.dionrasmadi.lelangapp.listDetailBarang.DetailPenjualActivity.recyclerView;
 
 public class BackgroundWorker extends AsyncTask<String, Void, String> {
@@ -38,6 +42,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     private AlertDialog alertDialog ;
     private Context context ;
+
 
     public BackgroundWorker(Context ctx){
         context = ctx;
@@ -272,8 +277,9 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             case "listBarang":{
                 try {
                     JSONArray array = new JSONArray(results);
-
+                    boolean adaData = false;
                     for (int i=0; i<array.length(); i++){
+                        adaData = true;
                         JSONObject dataObject = array.getJSONObject(i);
                         String id_barang = dataObject.getString("id_barang");
                         String username = dataObject.getString("username");
@@ -292,10 +298,14 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                         Log.e("coba i", String.valueOf(i));
                     }
 
+                    if(!adaData){
+                        recyclerView.setVisibility(View.GONE);
+                        layout_no_data.setVisibility(View.VISIBLE);
+                    }
+
+                    progressBar2.setVisibility(View.GONE);
                     adapter = new AdapterBarang(context, barangList);
                     recyclerView.setAdapter(adapter);
-
-//                    USERNAME = data_barang.getString("username");
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -303,7 +313,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 }
                 break;
             }
-
 
         }
     }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -21,23 +22,14 @@ public class DetailPenjualActivity extends AppCompatActivity {
     TextView tvNama, tvTlf, tvAlamat;
     CollapsingToolbarLayout collapsingToolbarLayout;
 
-    ProgressBar progressBar2;
+    public static ProgressBar progressBar2;
 
     public static RecyclerView recyclerView;
     public static List<DataBarang> barangList;
     public static AdapterBarang adapter;
+    public static LinearLayout layout_no_data;
 
     private static final String BARANG_URL = "https://ondy13.000webhostapp.com/barangApi.php";
-/*
-    public static String id_barang;
-    public static String username;
-    public static String nama_barang;
-    public static String jumlah;
-    public static String nama_penjual;
-    public static String alamat_penjual;
-    public static String harga_tawar;
-    public static String status_tawar;
-    public static String gambar;*/
 
     String username;
 
@@ -55,6 +47,7 @@ public class DetailPenjualActivity extends AppCompatActivity {
         tvNama = findViewById(R.id.tv_nama);
         tvTlf = findViewById(R.id.tv_tlf);
         tvAlamat = findViewById(R.id.tv_alamat);
+        layout_no_data = findViewById(R.id.layout_no_data);
 
         Intent i = getIntent();
         final Bundle extras = i.getExtras();
@@ -65,7 +58,7 @@ public class DetailPenjualActivity extends AppCompatActivity {
             tvAlamat.setText(extras.getString("alamat"));
         }
 
-        progressBar2 = findViewById(R.id.progres_bar);
+        progressBar2 = findViewById(R.id.progressBar2);
         recyclerView = findViewById(R.id.rv_list_lelang);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
