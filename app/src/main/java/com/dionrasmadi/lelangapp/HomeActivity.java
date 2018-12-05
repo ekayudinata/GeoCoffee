@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.dionrasmadi.lelangapp.dataClass.DataLogin;
 import com.dionrasmadi.lelangapp.listJual.ListPenjualActivity;
 import com.dionrasmadi.lelangapp.listLelang.LelangActivity;
 import com.dionrasmadi.lelangapp.mapPenjual.MapPetaniActivity;
@@ -24,23 +26,30 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
     import com.google.android.gms.common.GooglePlayServicesRepairableException;
     import com.google.android.gms.location.places.Place;
     import com.google.android.gms.location.places.ui.PlacePicker;
+
+import java.util.List;
+
 public class HomeActivity extends AppCompatActivity {
 
     private final static int MY_PERMISSION_FINE_LOCATION = 101;
     private final static int PLACE_PICKER_REQUEST = 1;
 
-
     public static Dialog dialog;
-    private  String latitude="", longitude="",username;
+    private  String latitude="", longitude="",username="",nama="",alamat="",noTlf="";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         Intent intent = getIntent();
         latitude = intent.getStringExtra("latitude");
         longitude = intent.getStringExtra("longitude");
         username  = intent.getStringExtra("username");
+        nama = intent.getStringExtra("nama");
+        alamat = intent.getStringExtra("alamat");
+        noTlf = intent.getStringExtra("tfl");
 
         requestPermission();
 
@@ -48,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.layout_loading);
         dialog.setCanceledOnTouchOutside(false);
     }
+
 
     public void toListPenjual(View view){
         Intent i = new Intent(this, ListPenjualActivity.class);
@@ -58,6 +68,7 @@ public class HomeActivity extends AppCompatActivity {
         Intent i = new Intent(this, MapPetaniActivity.class);
         startActivity(i);
     }
+
 
     public void toLelangSaya(View view) {
         if ((latitude.equals("")) && (longitude.equals(""))){
@@ -86,6 +97,10 @@ public class HomeActivity extends AppCompatActivity {
         } else{
             Intent i = new Intent(HomeActivity.this, LelangActivity.class );
             i.putExtra("username",username);
+            i.putExtra("latitude",latitude);
+            i.putExtra("longitude",longitude);
+            i.putExtra("alamat",alamat);
+            i.putExtra("tfl",noTlf);
             startActivity(i);
 
         }

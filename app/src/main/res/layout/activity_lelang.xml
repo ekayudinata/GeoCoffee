@@ -32,6 +32,7 @@
                 app:layout_collapseMode="parallax">
 
                 <ImageView
+                    android:id="@+id/foto_petani"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:src="@drawable/icon_farmer" />
@@ -43,16 +44,19 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/nama_user"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="nama" />
 
                     <TextView
+                        android:id="@+id/no_telepon_user"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="08838232xxx" />
 
                     <TextView
+                        android:id="@+id/alamat_user"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="jalan bayu indah lestari" />

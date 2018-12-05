@@ -9,7 +9,10 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import com.dionrasmadi.lelangapp.dataClass.DataBarang;
+import com.dionrasmadi.lelangapp.dataClass.DataLelangSaya;
+import com.dionrasmadi.lelangapp.dataClass.DataLogin;
 import com.dionrasmadi.lelangapp.listDetailBarang.AdapterBarang;
+import com.dionrasmadi.lelangapp.listLelang.LelangAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +27,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.dionrasmadi.lelangapp.LoginActivity.loading;
 import static com.dionrasmadi.lelangapp.RegisterActivity.etEmail;
@@ -31,13 +36,18 @@ import static com.dionrasmadi.lelangapp.RegisterActivity.loadingRegist;
 import static com.dionrasmadi.lelangapp.listDetailBarang.DetailPenjualActivity.adapter;
 import static com.dionrasmadi.lelangapp.listDetailBarang.DetailPenjualActivity.barangList;
 import static com.dionrasmadi.lelangapp.listDetailBarang.DetailPenjualActivity.recyclerView;
+import static com.dionrasmadi.lelangapp.listLelang.LelangActivity.adapterlelang;
+import static com.dionrasmadi.lelangapp.listLelang.LelangActivity.barang;
+import static com.dionrasmadi.lelangapp.listLelang.LelangActivity.recyclerViewlelang;
 
 public class BackgroundWorker extends AsyncTask<String, Void, String> {
-    private String USERNAME="", PASSWORD="",LONGITUDE="",LATITUDE="";
+    private String USERNAME="", PASSWORD="",LONGITUDE="",LATITUDE="",ALAMAT="",TELEPON="",GAMBAR="", NAMA="";
     private String TYPE="";
 
     private AlertDialog alertDialog ;
     private Context context ;
+
+    List<DataLogin> dataLogin;
 
     public BackgroundWorker(Context ctx){
         context = ctx;
@@ -49,6 +59,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         String login_url = "http://lelang.freeoda.com/login.php";
         String register_url = "http://lelang.freeoda.com/registrasi.php";
         String listBarang_url = "http://lelang.freeoda.com/barangApi.php";
+        String Lelang_url = "http://lelang.freeoda.com/LelangApi.php";
 
         switch (TYPE){
             case "login":{
@@ -180,6 +191,48 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                     inputStream.close();
                     httpURLConnection.disconnect();
 
+//                    Log.e("result", result);
+
+                    return  result;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+
+            case "listLelangSaya":{
+                try {
+                    String username = params[1];
+
+                    URL url = new URL(Lelang_url);
+                    HttpURLConnection httpURLConnection =(HttpURLConnection)url.openConnection();
+                    httpURLConnection.setRequestMethod("POST");
+                    httpURLConnection.setDoOutput(true);
+                    httpURLConnection.setDoInput(true);
+                    OutputStream outputStream = httpURLConnection.getOutputStream();
+
+                    BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                    String post_data = URLEncoder.encode("username","UTF-8")+"="+URLEncoder.encode(username,"UTF-8");
+
+                    bufferedWriter.write(post_data);
+                    bufferedWriter.flush();
+                    bufferedWriter.close();
+                    outputStream.close();
+
+                    InputStream inputStream = httpURLConnection.getInputStream();
+
+                    String result ="";
+                    int tmp;
+                    while ((tmp = inputStream.read())!=-1){
+                        result += (char)tmp;
+                    }
+
+                    inputStream.close();
+                    httpURLConnection.disconnect();
+
                     Log.e("result", result);
 
                     return  result;
@@ -218,8 +271,13 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                     berhasilLogin = true;
 
                     USERNAME = user_data.getString("username");
+                    ALAMAT = user_data.getString("alamat");
+                    NAMA = user_data.getString("nama");
+                    TELEPON =user_data.getString("tlf");
                     LONGITUDE = user_data.getString("longitude");
                     LATITUDE = user_data.getString("latitude");
+
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -227,11 +285,19 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 }
 
                 if (berhasilLogin){
+
+                    dataLogin = new ArrayList<>();
+                    DataLogin dataUser = new DataLogin (USERNAME, TELEPON, NAMA, ALAMAT,LONGITUDE, LATITUDE);
+                    dataLogin.add(dataUser);
+
                     Intent i  = new Intent(context, HomeActivity.class);
                     i.putExtra("username",USERNAME);
-                    i.putExtra("password", PASSWORD);
                     i.putExtra("longitude",LONGITUDE);
                     i.putExtra("latitude",LATITUDE);
+                    i.putExtra("alamat",ALAMAT);
+                    i.putExtra("tfl",TELEPON);
+                    i.putExtra("nama",NAMA);
+
                     context.startActivity(i);
                     ((LoginActivity)context).finish();
                 }
@@ -274,7 +340,38 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 break;
             }
 
-            case "listBarang":{
+            case "listLelangSaya" :{
+                try {
+                    JSONArray array = new JSONArray(results);
+
+                    for (int i=0; i<array.length(); i++){
+                        JSONObject dataObject = array.getJSONObject(i);
+                        String id_barang = dataObject.getString("id_barang");
+                        String username = dataObject.getString("username");
+                        String nama_barang = dataObject.getString("nama_brg");
+                        String jumlah = dataObject.getString("jumlah");
+                        String harga_tawar = dataObject.getString("harga");
+                        String status_tawar = dataObject.getString("status");
+                        String gambar = dataObject.getString("gambar");
+
+                        DataLelangSaya datalelang = new DataLelangSaya(id_barang, username,
+                                nama_barang, jumlah,
+                                harga_tawar, status_tawar, gambar);
+                        barang.add(datalelang);
+                        Log.e("coba i", String.valueOf(i));
+                    }
+
+                    adapterlelang = new LelangAdapter(context, barang);
+                    recyclerViewlelang.setAdapter(adapterlelang);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    trr = "Exception: "+e.getMessage();
+                }
+                break;
+            }
+
+            case  "listBarang":{
                 try {
                     JSONArray array = new JSONArray(results);
 
@@ -299,8 +396,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
                     adapter = new AdapterBarang(context, barangList);
                     recyclerView.setAdapter(adapter);
-
-//                    USERNAME = data_barang.getString("username");
 
                 } catch (JSONException e) {
                     e.printStackTrace();

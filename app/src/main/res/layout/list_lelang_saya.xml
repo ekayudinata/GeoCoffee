@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+
+            <ImageView
+                android:id="@+id/iv_barang"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="#000"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_nama_barang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="19sp"
+                    android:textColor="#000"
+                    android:text="Biji Kopi Kintamani"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_farmer"/>
+
+                    <TextView
+                        android:id="@+id/tv_nama_penjual"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center_vertical"
+                        android:text="I Gede Kopi"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_place_black_24dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_alamat_penjual"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center_vertical"
+                        android:text="Jimbaran"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_harga_barang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="19sp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="Rp 13.500"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
