@@ -61,7 +61,13 @@
         <activity
             android:name=".listDetailBarang.DetailPenjualActivity"
             android:theme="@style/AppTheme2" />
+<<<<<<< HEAD
         <activity android:name=".listLelang.TambahLelangActivity"></activity>
+=======
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
+>>>>>>> 33f217b11f72eac4f6522d9baf962301d0b9bca0
     </application>
 
 </manifest>
