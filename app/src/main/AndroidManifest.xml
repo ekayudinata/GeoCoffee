@@ -36,8 +36,9 @@
             android:name=".RegisterActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".listJual.ListPenjualActivity" />
-        <activity android:name=".listLelang.LelangActivity"
-            android:theme="@style/AppTheme2"/>
+        <activity
+            android:name=".listLelang.LelangActivity"
+            android:theme="@style/AppTheme2" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -53,8 +54,12 @@
         <activity
             android:name=".mapPenjual.MapPetaniActivity"
             android:label="@string/title_activity_map_petani" />
-        <activity android:name=".listDetailBarang.DetailPenjualActivity"
-            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name=".listDetailBarang.DetailPenjualActivity"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>
