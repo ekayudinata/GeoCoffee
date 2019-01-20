@@ -100,6 +100,7 @@ public class HomeActivity extends AppCompatActivity {
             i.putExtra("latitude",latitude);
             i.putExtra("longitude",longitude);
             i.putExtra("alamat",alamat);
+            i.putExtra("nama",nama);
             i.putExtra("tfl",noTlf);
             startActivity(i);
 

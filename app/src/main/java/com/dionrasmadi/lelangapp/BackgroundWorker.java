@@ -277,7 +277,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                     LONGITUDE = user_data.getString("longitude");
                     LATITUDE = user_data.getString("latitude");
 
-
+//Log.d("nama",NAMA);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -90,7 +90,8 @@ public class MapPetaniActivity extends FragmentActivity implements OnMapReadyCal
                                             .position(latLng[i])
                                             .title(nama[i])
                                             .snippet(alamat[i])
-                                            .icon(BitmapDescriptorFactory.defaultMarker()));
+                                            .icon(BitmapDescriptorFactory.defaultMarker()))
+                                            .showInfoWindow();
                                 }
 
                             } catch (JSONException je) {
